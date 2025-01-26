@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Button} from 'react-native';
 import COLORS from '../constants/color'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Vault from '../components/Vault';
 
-interface Vault {
-  vaultName: string;
-  icon?: string;
-  username?: string;
-  email?: string;
-  password: string;
-}
-
 const VaultsScreen = () => {
-  const [vaults, setVaults] = useState<Vault[]>([]);
- 
-  const addVault = (newVault: Vault) => {
-    setVaults([...vaults, newVault]);
-  };  
+  //const { vaults } = useContext(VaultsContext);
+  
+  const [vaults, setVaults] = useState<any[]>([]);
+
+  const addVault = () => {
+    setVaults([...vaults, {}]);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,9 +19,15 @@ const VaultsScreen = () => {
         <View style={styles.headerContainer}>
             <Text style={styles.title}>All Vaults</Text>
         </View>
+        <Button 
+          onPress={addVault}
+          title="add"
+        />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.vaultsContainer}>
-            <Vault></Vault>
+            {vaults.map((_, index) => (
+              <Vault key={index} /> // Using the index as the key to keep track of each Vault
+            ))}
           </View>
         </ScrollView>
       </View>

@@ -4,7 +4,7 @@ import COLORS from '../constants/color';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SettingsToggle from '../components/SettingsToggle';
 import Slider from '@react-native-community/slider';
-import * as Clipboard from 'expo-clipboard';
+//import * as Clipboard from 'expo-clipboard';
 
 const PasswordScreen = () => {
   const [password, setPassword] = useState("");
@@ -37,8 +37,8 @@ const PasswordScreen = () => {
   };
 
   const copyToClipboard = (text: string) => {
-    Clipboard.setStringAsync(text);
-    Alert.alert('Copied!', 'Text has been copied to clipboard.');
+    /*Clipboard.setStringAsync(text);
+    Alert.alert('Copied!', 'Text has been copied to clipboard.');*/
   };
 
   return (
@@ -190,7 +190,7 @@ optionsDescriptionContainer: {
     width: 370,
     borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     gap: 10,
   },
   headerContainer: {

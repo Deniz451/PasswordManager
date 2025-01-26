@@ -45,52 +45,52 @@ const NewVaultScreen = () => {
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.inputCardsContainer}>
-        <View style={styles.firstInputCardRow}>
+          <View style={styles.firstInputCardRow}>
+              <InputCard 
+                width={258} 
+                title={'Vault Name'} 
+                hintText='My New Vault'
+                value={vaultName} 
+                onChangeText={setVaultName} 
+                isValid = {isVaultNameValid}
+                buttonPressed = {buttonPressed}
+              />
+              <InputCard 
+                width={45} 
+                title={'Icon'} 
+                value={icon} 
+                onChangeText={setIcon} 
+                isValid = {true}
+                buttonPressed = {buttonPressed}
+              />
+            </View>
             <InputCard 
-              width={258} 
-              title={'Vault Name'} 
-              hintText='My New Vault'
-              value={vaultName} 
-              onChangeText={setVaultName} 
-              isValid = {isVaultNameValid}
-              buttonPressed = {buttonPressed}
-            />
-            <InputCard 
-              width={45} 
-              title={'Icon'} 
-              value={icon} 
-              onChangeText={setIcon} 
+              width={315} 
+              title={'Username'} 
+              hintText='Example Name' 
+              value={username} 
+              onChangeText={setUsername} 
               isValid = {true}
               buttonPressed = {buttonPressed}
             />
+            <InputCard 
+              width={315} 
+              title={'Email'} 
+              hintText='example@mail.com' 
+              value={email} 
+              onChangeText={setEmail} 
+              isValid = {true}
+              buttonPressed = {buttonPressed}
+            />
+            <InputCard 
+              width={315} 
+              title={'Password'} 
+              value={password} 
+              onChangeText={setPassword} 
+              isValid = {isPasswordValid}
+              buttonPressed = {buttonPressed}
+            />
           </View>
-          <InputCard 
-            width={315} 
-            title={'Username'} 
-            hintText='Example Name' 
-            value={username} 
-            onChangeText={setUsername} 
-            isValid = {true}
-            buttonPressed = {buttonPressed}
-          />
-          <InputCard 
-            width={315} 
-            title={'Email'} 
-            hintText='example@mail.com' 
-            value={email} 
-            onChangeText={setEmail} 
-            isValid = {true}
-            buttonPressed = {buttonPressed}
-          />
-          <InputCard 
-            width={315} 
-            title={'Password'} 
-            value={password} 
-            onChangeText={setPassword} 
-            isValid = {isPasswordValid}
-            buttonPressed = {buttonPressed}
-          />
-        </View>
         <View style={styles.createVaultButton}>
           <Text style={styles.buttonText} onPress={handleCreateVault}>Create New Vault</Text>
         </View>
@@ -102,7 +102,6 @@ const NewVaultScreen = () => {
 const styles = StyleSheet.create({
   titleContainer: {
     width: 335,
-    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -121,12 +120,12 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     width: 370,
-    height: 720,
+    height: 690,
     backgroundColor: COLORS.backgroundLight,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 320,
+    gap: 250,
   },
   inputCardsContainer: {
     gap: 35,
