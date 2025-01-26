@@ -1,29 +1,29 @@
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
-// Define the shape of a vault item
-interface Vault {
-  name: string;
-  description: string;
-}
 
-// Define the shape of the context
-interface VaultContextType {
-  vaults: Vault[];
-  setVaults: React.Dispatch<React.SetStateAction<Vault[]>>;
-}
-
-// Create the context
-export const VaultContext = createContext<VaultContextType | undefined>(
-  undefined
-);
-
-// Create the provider component
-interface VaultProviderProps {
-  children: ReactNode;
-}
-
-export const VaultProvider: React.FC<VaultProviderProps> = ({ children }) => {
-  const [vaults, setVaults] = useState<Vault[]>([]); // State to hold vault data
-
+interface VaultsContextInterface {
+  vaults: any[];
+  addVault: () => void;
 };
 
+const VaultContext = createContext<VaultsContextInterface | undefined>(undefined);
+
+export const useVaultContext = () => {
+  const context = useContext(VaultContext);
+  if (!context) {
+    throw new Error('useVaults must be used within a VaultsProvider');
+  }
+  return context;
+};
+
+export default VaultContext;
+
+export const VaultProvider: React.FC = ({ children }) => {
+  const [vaults, setVaults] = useState<any[]>([]);
+
+  return (
+    <VaultContext.Provider value={{ vaults }}>
+      {children}
+    </VaultContext.Provider>
+  );
+};

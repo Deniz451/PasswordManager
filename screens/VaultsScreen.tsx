@@ -1,16 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Button} from 'react-native';
 import COLORS from '../constants/color'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Vault from '../components/Vault';
 
 const VaultsScreen = () => {
-  //const { vaults } = useContext(VaultsContext);
-  
   const [vaults, setVaults] = useState<any[]>([]);
 
   const addVault = () => {
-    setVaults([...vaults, {}]);
+    setVaults([...vaults, <Vault key={vaults.length} />]);
   };
 
   return (
@@ -25,9 +23,7 @@ const VaultsScreen = () => {
         />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.vaultsContainer}>
-            {vaults.map((_, index) => (
-              <Vault key={index} /> // Using the index as the key to keep track of each Vault
-            ))}
+            {vaults.map((vault, index) => (vault))}
           </View>
         </ScrollView>
       </View>
