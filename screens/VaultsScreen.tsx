@@ -3,13 +3,15 @@ import { View, Text, StyleSheet, ScrollView, Button} from 'react-native';
 import COLORS from '../constants/color'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Vault from '../components/Vault';
+import { useVaultContext } from '../context/VaultContext';
 
 const VaultsScreen = () => {
-  const [vaults, setVaults] = useState<any[]>([]);
+  //const [vaults, setVaults] = useState<any[]>([]);
+  const { vaults } = useVaultContext();
 
-  const addVault = () => {
+  /*const addVault = () => {
     setVaults([...vaults, <Vault key={vaults.length} />]);
-  };
+  };*/
 
   return (
     <SafeAreaView style={styles.container}>
@@ -17,13 +19,13 @@ const VaultsScreen = () => {
         <View style={styles.headerContainer}>
             <Text style={styles.title}>All Vaults</Text>
         </View>
-        <Button 
+        {/*<Button 
           onPress={addVault}
           title="add"
-        />
+        />*/}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.vaultsContainer}>
-            {vaults.map((vault, index) => (vault))}
+            {vaults.map((vault) => (vault.name))}
           </View>
         </ScrollView>
       </View>

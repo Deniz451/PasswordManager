@@ -1,12 +1,14 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, Children } from 'react';
 
 
 interface VaultsContextInterface {
   vaults: any[];
-  addVault: () => void;
+  addVault: (vault: any) => void;
 };
 
 const VaultContext = createContext<VaultsContextInterface | undefined>(undefined);
+
+export default VaultContext;
 
 export const useVaultContext = () => {
   const context = useContext(VaultContext);
@@ -16,14 +18,21 @@ export const useVaultContext = () => {
   return context;
 };
 
-export default VaultContext;
+interface VaultProviderProps {
+  children: any;
+}
 
-export const VaultProvider: React.FC = ({ children }) => {
+export const VaultProvider: React.FC<VaultProviderProps> = ({ children }) => {
   const [vaults, setVaults] = useState<any[]>([]);
 
+  const addVault = (vault: any) => {
+    setVaults((prevVaults) => [...prevVaults, vault]);
+  };
+
   return (
-    <VaultContext.Provider value={{ vaults }}>
+    <VaultContext.Provider value={{ vaults, addVault }}>
       {children}
     </VaultContext.Provider>
   );
+
 };

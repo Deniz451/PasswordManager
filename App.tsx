@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform, StatusBar, StyleSheet } from 'react-native';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import BottomTab from './components/BottomTab';
-import COLORS from './constants/color';
-import NewVaultScreen from './screens/NewVaultScreen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import BottomTab from './components/BottomTab';
+import NewVaultScreen from './screens/NewVaultScreen';
+import COLORS from './constants/color';
+import { VaultProvider } from './context/VaultContext';
+
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
+    <VaultProvider>
       <SafeAreaView style={styles.container}>
         {Platform.OS !== 'web' && <StatusBar hidden={true} />}
         <NavigationContainer>
@@ -20,6 +24,7 @@ const App = () => {
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
+    </VaultProvider>
   );
 };
 

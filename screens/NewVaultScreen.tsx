@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import COLORS from '../constants/color'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import InputCard from '../components/InputCard';
 import BackButton from '../components/BackButton';
 import { useNavigation } from '@react-navigation/native';
+import VaultContext from '../context/VaultContext';
 
 const NewVaultScreen = () => {
   const [buttonPressed, setButtonPressed] = useState(false);
@@ -18,6 +19,12 @@ const NewVaultScreen = () => {
   const [isVaultNameValid, setVaultNameValid] = useState(true);
 
   const navigation = useNavigation();
+  const context = useContext(VaultContext);
+  
+  if (!context)
+    throw new Error('wrong use of context');
+
+  const { addVault } = context;
 
   const handleCreateVault = () => {
     setButtonPressed(true);
@@ -30,7 +37,7 @@ const NewVaultScreen = () => {
   
     if (isPasswordValid && isVaultNameValid) {
       const newVault = { vaultName, icon, username, email, password };
-      //addVault(newVault);
+      addVault(newVault);
       navigation.goBack();
     }
   };
