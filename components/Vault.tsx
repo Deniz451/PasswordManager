@@ -1,8 +1,17 @@
 import { StyleSheet, View, Text, Image } from 'react-native';
 import COLORS from '../constants/color';
 
-const Vault = () => {
-    return (
+export interface VaultProps {
+  vaultName: string;
+  icon: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
+const Vault = ({ vault }: { vault: VaultProps }) => {
+  console.log('Vault object passed into vault component: ', vault);   
+  return (
         <View style={styles.container}>
             <View style={styles.iconContainer}>
                 <Image 
@@ -11,8 +20,8 @@ const Vault = () => {
                 />
             </View>
             <View style={styles.textContainer}>
-                <Text style={styles.vaultName}>Pinterest</Text>
-                <Text style={styles.vaultDetails}>example@mail.com</Text>
+                <Text style={styles.vaultName}>{vault?.vaultName || 'Undefined'}</Text>
+                <Text style={styles.vaultDetails}>{vault?.email || 'Undefined'}</Text>
             </View>
         </View>
     );

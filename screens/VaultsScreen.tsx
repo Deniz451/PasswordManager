@@ -6,12 +6,7 @@ import Vault from '../components/Vault';
 import { useVaultContext } from '../context/VaultContext';
 
 const VaultsScreen = () => {
-  //const [vaults, setVaults] = useState<any[]>([]);
   const { vaults } = useVaultContext();
-
-  /*const addVault = () => {
-    setVaults([...vaults, <Vault key={vaults.length} />]);
-  };*/
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,13 +14,11 @@ const VaultsScreen = () => {
         <View style={styles.headerContainer}>
             <Text style={styles.title}>All Vaults</Text>
         </View>
-        {/*<Button 
-          onPress={addVault}
-          title="add"
-        />*/}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.vaultsContainer}>
-            {vaults.map((vault) => (vault.name))}
+            {vaults.map((vault, index) => (
+              <Vault key={index} vault={vault} />
+            ))}
           </View>
         </ScrollView>
       </View>
@@ -41,10 +34,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scrollContainer: {
-    height: 700, // Adjust height to your preference
+    height: 700,
     width: '100%',
     marginLeft: 40,
-    //backgroundColor: 'orange',
   },
   title: {
     fontSize: 24,

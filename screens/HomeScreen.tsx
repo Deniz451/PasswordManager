@@ -23,7 +23,6 @@ const HomeScreen = () => {
       <View style={styles.recentVaultsContainer}>
         <View style={styles.vaultsContainer}>
           <Text style={styles.vaultsText}>Recent Vaults</Text>
-          <Vault></Vault>
         </View>
       </View>
     </SafeAreaView>

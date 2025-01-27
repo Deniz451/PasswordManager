@@ -5,7 +5,9 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import InputCard from '../components/InputCard';
 import BackButton from '../components/BackButton';
 import { useNavigation } from '@react-navigation/native';
-import VaultContext from '../context/VaultContext';
+import { useVaultContext } from '../context/VaultContext';
+import { VaultProps } from '../components/Vault';
+
 
 const NewVaultScreen = () => {
   const [buttonPressed, setButtonPressed] = useState(false);
@@ -19,12 +21,7 @@ const NewVaultScreen = () => {
   const [isVaultNameValid, setVaultNameValid] = useState(true);
 
   const navigation = useNavigation();
-  const context = useContext(VaultContext);
-  
-  if (!context)
-    throw new Error('wrong use of context');
-
-  const { addVault } = context;
+  const { addVault } = useVaultContext();
 
   const handleCreateVault = () => {
     setButtonPressed(true);
@@ -36,8 +33,9 @@ const NewVaultScreen = () => {
     setVaultNameValid(isVaultNameValid);
   
     if (isPasswordValid && isVaultNameValid) {
-      const newVault = { vaultName, icon, username, email, password };
-      addVault(newVault);
+      const newVault: VaultProps = { vaultName, icon, username, email, password };
+      //console.log('New vault object before adding it: ', newVault);
+      addVault(newVault); 
       navigation.goBack();
     }
   };
